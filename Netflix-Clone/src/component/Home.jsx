@@ -1,23 +1,30 @@
-import NavBar from "./Navbar"
-import { useState, useEffect } from "react";
-import MovieList from "./MovieList";
+import { useState,useEffect } from "react";
+import Header from "./Header";
+import MovieList from './MovieList';
+import Navbar from './Navbar';
 
-const Home = () => {
-  const [moviesList, setMoviesList] = useState([]);
-  const fetchData = async () => {
-    
-      const response = await fetch(`${process.env.REACT_APP_SERVER}/trending`);
-      const data = await response.json();
-      setMoviesList(data);
-    console.log(data);
+export default function Home(){
+  
+  const [movies, setMovies]= useState([]);
+
+  async function getData(){
+      let response= await fetch(`${process.env.REACT_APP_SERVER}`);
+      let data = await response.json();
+      setMovies(data);   
   };
-  useEffect(() => fetchData(), []);
-  return (
-    <>
-      <NavBar />
-      <MovieList movies={moviesList}></MovieList>
-    </>
-  );
-};
 
-export default Home;
+  useEffect(()=>{
+    getData();
+  },[])
+
+  console.log(movies);
+  return(
+    <>
+    <Header/>
+    <div>
+      {movies && <MovieList movies={movies}/>}
+    </div>
+    <Navbar/>
+    </>
+  )
+}

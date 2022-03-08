@@ -1,30 +1,43 @@
-import Movie from "./Movie";
-import { useState, useEffect } from "react";
-import { Card, Button } from "react-bootstrap";
-import ModalMovie from "./ModalMovie";
 
-let MovieList = (props) =>{
-  const [chosenMovie, setChosenMovie] = useState()
-  // console.log(props.movies);
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import ModalMovie from './ModalMovie';
+import {useState} from 'react';
+let MovieList = ({ movies }) => {
+  
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
+  return (
+    <>
+      {
+        movies.map(movies => {
+          return (
+            <div key={movies.id}>
+              <Card style={{ width: '18rem', padding:"10px ", margin:"15px " }}>
+                <Card.Img variant="top" src={movies.poster_path} />
+                <Card.Body>
+                  <Card.Title style={{ color: 'lightblue' }}>{movies.id}</Card.Title>
+                  <Card.Text style={{ fontFamily: 'cursive', letterSpacing: '1px' }}>
+                    {movies.overview}.
+                  </Card.Text>
+                  <Card.Subtitle>
+                    {movies.release_date}
+                  </Card.Subtitle>
+                  
+                  <Button variant="primary" onClick={handleShow}>Add to favorite</Button>
+                </Card.Body>
+              </Card>
 
-
-  function handelChosenMovie(movie){
-    // console.log(props);
-
-  };
-  return(
-    <div className="films">
-    {
-        props.movies.map(movie => {
-            return(<Movie movie={movie}/>
-            )
+              <ModalMovie movies={movies} show={show} handleClose={handleClose} />
+            </div>
+          )
         })
-        
-    }
-   
-    </div>
-)
-}
+      }
+    </>
+  )
+};
 export default MovieList;

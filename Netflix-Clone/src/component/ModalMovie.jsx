@@ -1,63 +1,21 @@
-import { Modal, Button, Form } from "react-bootstrap";
-import styled from "styled-components";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
-const StyledModal = styled(Modal)
-`
-  position: absolute;
-  left: 50%;
-  sub: 50%;
-  top: 10%;
-  height: 350px; 
-  width: 300px;
-`;
-
-const Img = styled.img
-`
-  width: 270px;
-`;
-
-const ModalMovie = (props) => {
-  
-  return (
-    <StyledModal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.movieData.title}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Img
-          src={`https://image.tmdb.org/t/p/w1280/${props.movieData.poster_path}`}
-        />
-        <p>{props.movieData.overview}</p>
-        <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Comment</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter your comment"
-            />
-
-            <Form.Text className="text-muted"></Form.Text>
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-          <Button>
-            Add to Favorites
-          </Button>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </StyledModal>
-  );
-};
-
-export default ModalMovie;
+export default function ModalMovie({movies,show,handleClose}){
+    return(
+        <Modal  show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{movies.id}</Modal.Title>
+        </Modal.Header>
+      
+        <Modal.Body>
+          <p> Release date : {movies.release_date}</p>
+        </Modal.Body>
+      
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button variant="primary"  onClick={handleClose}>Save changes</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+}
