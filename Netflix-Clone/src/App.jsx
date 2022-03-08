@@ -1,13 +1,14 @@
 import { Routes,Route } from "react-router-dom"
-import Home from './component/Home';
+
+import Home from "./component/Home";
+import FavList from "./component/FavList";
+
 export default function App(){
   return(
-    <div className="App">
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="fav" element={<FavList />} />
+    <Route path="/" element={<Home/>} />
+    <Route path="/fav" element={<FavList/>} />
     </Routes>
-  </div>
   );
 }
 
