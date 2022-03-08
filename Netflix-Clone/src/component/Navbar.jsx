@@ -7,8 +7,8 @@ const NavBar = () => {
           <Container style={{backgroundColor:'red'}} >
             <Nav>
               <Nav.Link href="/" style={{color:'white' ,fontSize:'larger'}}>Home</Nav.Link>
-            
-            <Nav.Link href="/fav" style={{color:'white' ,fontSize:'larger'}}>My List</Nav.Link>
+              <Nav.Link href="/fav" style={{color:'white' ,fontSize:'larger'}}>My List</Nav.Link>
+              <Nav.Link href="https://www.netflix.com" style={{color:'white' ,fontSize:'larger'}}>Visit Us</Nav.Link>
         </Nav>
         <p style={{color:'white' ,fontSize:'larger', marginTop:'10px'}}>&copy; NETFLIX</p>
       </Container>
