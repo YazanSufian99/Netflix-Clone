@@ -10,6 +10,7 @@ export default function Movie({movies}){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
+
   
     return(
         <div key={movies.id}>
